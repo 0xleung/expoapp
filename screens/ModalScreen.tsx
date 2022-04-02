@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Camera } from 'expo-camera';
+import { Camera, FaceDetectionResult } from 'expo-camera';
+import * as FaceDetector from 'expo-face-detector';
 
 export default function ß() {
   const [hasPermission, setHasPermission] = useState(false);
@@ -20,9 +21,22 @@ export default function ß() {
     return <Text>No access to camera</Text>;
   }
 
+  const handleFacesDetected = (faces: FaceDetectionResult) => {
+    console.log(faces);
+  };
+
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} type={type}>
+      <Camera style={styles.camera} type={type}
+              onFacesDetected={handleFacesDetected}
+              faceDetectorSettings={{
+                mode: FaceDetector.FaceDetectorMode.fast,
+                detectLandmarks: FaceDetector.FaceDetectorLandmarks.none,
+                runClassifications: FaceDetector.FaceDetectorClassifications.none,
+                minDetectionInterval: 100,
+                tracking: true,
+              }}
+      >
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
