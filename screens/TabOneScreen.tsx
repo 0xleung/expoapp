@@ -9,7 +9,7 @@ import { RootTabScreenProps } from '../types';
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Expo App  ooo</Text>
+      <Text style={styles.title}>Expo App</Text>
       
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <View style={{
